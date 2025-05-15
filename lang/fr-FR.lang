@@ -1,0 +1,15 @@
+MSG_WELCOME=Bienvenue dans BlockBlast !
+MSG_SCORE=Score : %d
+MSG_BEST_SCORE=Meilleur score : %d
+MSG_ENTER_PSEUDO=Entrez votre pseudo :
+MSG_GAME_OVER=Plus aucun placement possible. Partie terminée !
+MSG_FINAL_SCORE=Score final : %d
+MSG_SAVED=Votre score a été sauvegardé dans le fichier score.txt
+MSG_PRESS_ENTER=Appuyez sur Entrée pour recommencer une partie...
+MSG_BLOCKS_LEFT=Blocs restants :
+MSG_SELECT=Utilisez ←/→ pour choisir, Entrée/Espace pour valider, S pour scores, M pour langue.
+MSG_PLACE=Utilisez les flèches pour déplacer, Espace/Entrée pour valider, q pour annuler.
+MSG_SCORES=--- Historique des scores ---
+MSG_SCORES_END=---------------------------
+MSG_NO_SCORE=Aucun score enregistré.
+MSG_SCORES_LINE=Partie %d : %d pts par %s le %s 

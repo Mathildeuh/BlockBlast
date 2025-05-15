@@ -1,0 +1,15 @@
+MSG_WELCOME=Welcome to BlockBlast!
+MSG_SCORE=Score: %d
+MSG_BEST_SCORE=Best score: %d
+MSG_ENTER_PSEUDO=Enter your name:
+MSG_GAME_OVER=No more possible moves. Game over!
+MSG_FINAL_SCORE=Final score: %d
+MSG_SAVED=Your score has been saved in score.txt
+MSG_PRESS_ENTER=Press Enter to start a new game...
+MSG_BLOCKS_LEFT=Blocks left:
+MSG_SELECT=Use ←/→ to choose, Enter/Space to confirm, S for scores, M for language.
+MSG_PLACE=Use arrows to move, Space/Enter to confirm, q to cancel.
+MSG_SCORES=--- Score history ---
+MSG_SCORES_END=------------------
+MSG_NO_SCORE=No score recorded.
+MSG_SCORES_LINE=Game %d: %d pts by %s on %s 
