@@ -170,7 +170,6 @@ void print_centered(const char *str, int width) {
 
 void afficher_grille(const Grid *grille, int score) {
     char buf[128];
-    int termw = get_terminal_width();
     snprintf(buf, sizeof(buf), COLOR_SCORE "Score : %d" COLOR_RESET "\n\n", score);
     printf("%s", buf);
     char ligne[256];
@@ -247,7 +246,6 @@ int peut_placer_bloc(const Grid *grille, const Block *bloc, int x, int y) {
 // Affiche la grille avec le bloc fantôme à la position (bx, by)
 void afficher_grille_avec_bloc(const Grid *grille, const Block *bloc, int bx, int by, int peut_placer) {
     char buf[128];
-    int termw = get_terminal_width();
     snprintf(buf, sizeof(buf), COLOR_SCORE "Score : ?" COLOR_RESET "\n\n");
     printf("%s", buf);
     char ligne[256];
@@ -457,7 +455,8 @@ void charger_langue(const char* code) {
         // Enlever retour à la ligne
         char* nl = strchr(val, '\n');
         if (nl) *nl = 0;
-        snprintf(lang_msgs.key[lang_msgs.count], 32, "%s", key);
+        strncpy(lang_msgs.key[lang_msgs.count], key, 31);
+        lang_msgs.key[lang_msgs.count][31] = '\0';
         snprintf(lang_msgs.val[lang_msgs.count], MSG_LEN, "%s", val);
         lang_msgs.count++;
     }

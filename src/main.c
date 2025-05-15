@@ -7,7 +7,6 @@
 void afficher_blocs_centres(const Block blocs[NB_BLOCKS], const int blocs_utilises[NB_BLOCKS], int selection) {
     // Paramètres du cadre
     const int cadre_largeur = 11; // Largeur fixe du cadre (5 cases * 2 + 1 espace)
-    const int cadre_hauteur = BLOCK_MAX_SIZE; // 5 lignes
     // Générer la ligne du haut
     for (int b = 0; b < NB_BLOCKS; ++b) {
         if (!blocs_utilises[b]) {
@@ -122,9 +121,6 @@ int main(void)
         int nb_blocs_restants = NB_BLOCKS;
         int px, py;
         int content_height = 0;
-
-        int best = lire_meilleur_score();
-        printf("%s\n", MSG("MSG_BEST_SCORE"));
 
         generer_blocs(blocs);
 
