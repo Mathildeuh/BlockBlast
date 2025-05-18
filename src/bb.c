@@ -174,25 +174,31 @@ void afficher_grille(const Grid *grille, int score) {
     printf("%s", buf);
     char ligne[256];
     // Ligne du haut
-    strcpy(ligne, "   +");
-    for (int x = 0; x < GRID_SIZE; ++x) strcat(ligne, "--");
-    strcat(ligne, "+");
+    strcpy(ligne, "   ");
+    strcat(ligne, "╭");
+    for (int x = 0; x < GRID_SIZE; ++x) {
+        for (int i = 0; i < 2; ++i) strcat(ligne, "─");
+    }
+    strcat(ligne, "╮");
     printf("%s\n", ligne);
     for (int y = 0; y < GRID_SIZE; ++y) {
-        sprintf(ligne, COLOR_FRAME "%2d |" COLOR_RESET, y+1);
+        sprintf(ligne, COLOR_FRAME "%2d │" COLOR_RESET, y+1);
         for (int x = 0; x < GRID_SIZE; ++x) {
             if (grille->cells[y][x])
-                strcat(ligne, COLOR_BLOCK "# " COLOR_RESET);
+                strcat(ligne, COLOR_BLOCK "▣ " COLOR_RESET);
             else
-                strcat(ligne, ". ");
+                strcat(ligne, "  ");
         }
-        strcat(ligne, COLOR_FRAME "|" COLOR_RESET);
+        strcat(ligne, COLOR_FRAME "│" COLOR_RESET);
         printf("%s\n", ligne);
     }
     // Ligne du bas
-    strcpy(ligne, "   +");
-    for (int x = 0; x < GRID_SIZE; ++x) strcat(ligne, "--");
-    strcat(ligne, "+");
+    strcpy(ligne, "   ");
+    strcat(ligne, "╰");
+    for (int x = 0; x < GRID_SIZE; ++x) {
+        for (int i = 0; i < 2; ++i) strcat(ligne, "─");
+    }
+    strcat(ligne, "╯");
     printf("%s\n", ligne);
     strcpy(ligne, "    ");
     for (int x = 0; x < GRID_SIZE; ++x) {
@@ -215,7 +221,7 @@ void afficher_blocs(const Block blocs[NB_BLOCKS]) {
             printf("   ");
             for (int x = 0; x < BLOCK_MAX_SIZE; ++x) {
                 if (blocs[b].shape[y][x])
-                    printf(COLOR_BLOCK "# " COLOR_RESET);
+                    printf(COLOR_BLOCK "▣ " COLOR_RESET);
                 else
                     printf("  ");
             }
@@ -267,16 +273,19 @@ void afficher_grille_avec_bloc(const Grid *grille, const Block *bloc, int bx, in
         }
     }
     // Ligne du haut
-    strcpy(ligne, "   +");
-    for (int x = 0; x < GRID_SIZE; ++x) strcat(ligne, "--");
-    strcat(ligne, "+");
+    strcpy(ligne, "   ");
+    strcat(ligne, "╭");
+    for (int x = 0; x < GRID_SIZE; ++x) {
+        for (int i = 0; i < 2; ++i) strcat(ligne, "─");
+    }
+    strcat(ligne, "╮");
     printf("%s\n", ligne);
     for (int y = 0; y < GRID_SIZE; ++y) {
         // Affichage du numéro de ligne
         if (lignes_pleines[y])
-            sprintf(ligne, COLOR_YELLOW "%2d |" COLOR_RESET, y+1);
+            sprintf(ligne, COLOR_YELLOW "%2d │" COLOR_RESET, y+1);
         else
-            sprintf(ligne, COLOR_FRAME "%2d |" COLOR_RESET, y+1);
+            sprintf(ligne, COLOR_FRAME "%2d │" COLOR_RESET, y+1);
         for (int x = 0; x < GRID_SIZE; ++x) {
             int affiche = 0;
             for (int byb = 0; byb < BLOCK_MAX_SIZE; ++byb)
@@ -286,34 +295,37 @@ void afficher_grille_avec_bloc(const Grid *grille, const Block *bloc, int bx, in
             if (lignes_pleines[y]) {
                 if (affiche) {
                     if (peut_placer)
-                        strcat(ligne, COLOR_YELLOW COLOR_OK "# " COLOR_RESET);
+                        strcat(ligne, COLOR_YELLOW COLOR_OK "▣ " COLOR_RESET);
                     else
-                        strcat(ligne, COLOR_YELLOW COLOR_NO "# " COLOR_RESET);
+                        strcat(ligne, COLOR_YELLOW COLOR_NO "▣ " COLOR_RESET);
                 } else if (grille->cells[y][x]) {
-                    strcat(ligne, COLOR_YELLOW COLOR_BLOCK "# " COLOR_RESET);
+                    strcat(ligne, COLOR_YELLOW COLOR_BLOCK "▣ " COLOR_RESET);
                 } else {
-                    strcat(ligne, COLOR_YELLOW ". " COLOR_RESET);
+                    strcat(ligne, COLOR_YELLOW "  " COLOR_RESET);
                 }
             } else {
                 if (affiche) {
                     if (peut_placer)
-                        strcat(ligne, COLOR_OK "# " COLOR_RESET);
+                        strcat(ligne, COLOR_OK "▣ " COLOR_RESET);
                     else
-                        strcat(ligne, COLOR_NO "# " COLOR_RESET);
+                        strcat(ligne, COLOR_NO "▣ " COLOR_RESET);
                 } else if (grille->cells[y][x]) {
-                    strcat(ligne, COLOR_BLOCK "# " COLOR_RESET);
+                    strcat(ligne, COLOR_BLOCK "▣ " COLOR_RESET);
                 } else {
-                    strcat(ligne, ". ");
+                    strcat(ligne, "  ");
                 }
             }
         }
-        strcat(ligne, COLOR_FRAME "|" COLOR_RESET);
+        strcat(ligne, COLOR_FRAME "│" COLOR_RESET);
         printf("%s\n", ligne);
     }
     // Ligne du bas
-    strcpy(ligne, "   +");
-    for (int x = 0; x < GRID_SIZE; ++x) strcat(ligne, "--");
-    strcat(ligne, "+");
+    strcpy(ligne, "   ");
+    strcat(ligne, "╰");
+    for (int x = 0; x < GRID_SIZE; ++x) {
+        for (int i = 0; i < 2; ++i) strcat(ligne, "─");
+    }
+    strcat(ligne, "╯");
     printf("%s\n", ligne);
     strcpy(ligne, "    ");
     for (int x = 0; x < GRID_SIZE; ++x) {

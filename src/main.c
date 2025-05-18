@@ -5,16 +5,16 @@
 
 // Fonction utilitaire pour afficher les blocs disponibles centrés
 void afficher_blocs_centres(const Block blocs[NB_BLOCKS], const int blocs_utilises[NB_BLOCKS], int selection) {
-    // Paramètres du cadre
-    const int cadre_largeur = 11; // Largeur fixe du cadre (5 cases * 2 + 1 espace)
-    // Générer la ligne du haut
+    const int cadre_largeur = 11;
+    // Ligne du haut de chaque bloc
     for (int b = 0; b < NB_BLOCKS; ++b) {
         if (!blocs_utilises[b]) {
-            printf("+");
-            for (int i = 0; i < cadre_largeur; ++i) printf("-");
+            printf("╭");
+            for (int i = 0; i < cadre_largeur; ++i) printf("─");
+            printf("╮ ");
         }
     }
-    printf("+\n");
+    printf("\n");
     // Calcul des paddings verticaux pour chaque bloc
     int min_y[NB_BLOCKS], max_y[NB_BLOCKS];
     for (int b = 0; b < NB_BLOCKS; ++b) {
@@ -45,9 +45,8 @@ void afficher_blocs_centres(const Block blocs[NB_BLOCKS], const int blocs_utilis
     for (int y = 0; y < BLOCK_MAX_SIZE; ++y) {
         for (int b = 0; b < NB_BLOCKS; ++b) {
             if (!blocs_utilises[b]) {
-                printf("|");
-                if (b == selection) printf("\033[47m"); // fond blanc uniquement à l'intérieur
-                // Centrage vertical : padding haut
+                printf("│");
+                if (b == selection) printf("\033[47m");
                 if (y < pad_top[b] || y >= BLOCK_MAX_SIZE - pad_bottom[b]) {
                     for (int i = 0; i < cadre_largeur; ++i) printf(" ");
                 } else {
@@ -71,9 +70,9 @@ void afficher_blocs_centres(const Block blocs[NB_BLOCKS], const int blocs_utilis
                             int bloc_x = min_x + (x - pad_left);
                             if (blocs[b].shape[bloc_y][bloc_x]) {
                                 if (b == selection)
-                                    printf("\033[30m# \033[0m\033[47m"); // texte noir sur fond blanc
+                                    printf("\033[30m▣ \033[0m\033[47m");
                                 else
-                                    printf("# ");
+                                    printf("▣ ");
                             } else {
                                 printf("  ");
                             }
@@ -82,20 +81,21 @@ void afficher_blocs_centres(const Block blocs[NB_BLOCKS], const int blocs_utilis
                     }
                     while (printed < cadre_largeur) { printf(" "); ++printed; }
                 }
-                if (b == selection) printf("\033[0m"); // fin du fond blanc juste avant le |
+                if (b == selection) printf("\033[0m");
+                printf("│ ");
             }
         }
-        // Fin de la ligne : un seul retour à la ligne
-        printf("|\n");
+        printf("\n");
     }
-    // Ligne du bas
+    // Ligne du bas de chaque bloc
     for (int b = 0; b < NB_BLOCKS; ++b) {
         if (!blocs_utilises[b]) {
-            printf("+");
-            for (int i = 0; i < cadre_largeur; ++i) printf("-");
+            printf("╰");
+            for (int i = 0; i < cadre_largeur; ++i) printf("─");
+            printf("╯ ");
         }
     }
-    printf("+\n");
+    printf("\n");
 }
 
 // Fonction utilitaire pour centrer verticalement
